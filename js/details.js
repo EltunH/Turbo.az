@@ -7,11 +7,14 @@ const tapdigim = [data.find(item => item.id == id)]
 
 if (tapdigim[0]) {
     showDetails()
-}else {
+} else {
     handleError()
 }
 
 function showDetails() {
+    basket.forEach(item => {
+        if (tapdigim[0].id == item.id) tapdigim[0].status = true
+    });
     tapdigim.map((item, i) => {
         let deyisen = item.currency == 'AZN' ? '' : `≈ ${(item.price * 1.7).toFixed()} AZN`
         detailsMain.innerHTML = `
@@ -33,8 +36,8 @@ function showDetails() {
                             <div class="flex justify-between items-center flex-col py-[12px] md:flex-row">
                                 <span class="text-[#212c3a] text-[19px] font-[700] tablet:text-[24px]">${item.brand} ${item.model}, ${item.engine} L, ${item.year} il, ${item.odometer} ${item.odometerUnit}</span>
                                 <div class="flex items-center gap-5">
-                                    <a onclick="addBasket( ${item.id}, ${item.price}, '${item.model}', '${item.brand}', '${item.currency}', '${item.images[0]}', event)" href="#"  class="flex gap-[5px] ${item.status == false ? 'text-black' : 'text-[#ca1016]'} items-center text-[15px] hover:text-[#ca1016]">
-                                        <i class="fa-regular fa-heart text-[20px]"></i> Seçilmişlərdə saxla
+                                    <a onclick="addBasket( ${item.id}, ${item.price}, '${item.model}', '${item.brand}', '${item.currency}', '${item.images[0]}', event)" href="#"  class="flex gap-[5px] items-center text-[15px] hover:text-[#ca1016]">
+                                        <i class="fa-regular ${item.status == false ? '' : 'text-[#ca1016]'} fa-heart text-[20px]"></i> Seçilmişlərdə saxla
                                     </a>
                                     <a href="#" class="flex gap-[5px] items-center text-[15px] hover:text-[#ca1016]">
                                         <i class="fa-regular fa-flag text-[20px]"></i> Şikayət et

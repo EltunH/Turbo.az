@@ -13,14 +13,19 @@ function likeOpen() {
 function addBasket(id, price, model, brand, currency, images, e) {
     e.preventDefault()
     e.stopPropagation()
-    data[id - 1].status = true
+    copyData.find(item => {
+        if(item.id == id) item.status = true
+    })
+    data.find(item => {
+        if(item.id == id) item.status = true
+    })
     const obj = { id, price, model, brand, currency, images, count: 1 };
     const yoxla = basket.find(item => item.id == id)
     if (yoxla == undefined) basket.push(obj)
     else yoxla.count += 1
     localStorage.setItem('basket', JSON.stringify(basket))
-    show()
     showBasket()
+    show()
 }
 
 showBasket()
