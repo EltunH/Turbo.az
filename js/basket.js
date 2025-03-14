@@ -10,14 +10,14 @@ function likeOpen() {
     flag = !flag
 }
 
-function addBasket(id, price, model, brand, currency, images, e) {
+function addBasket(id, price, model, brand, currency, images, e, sort) {
     e.preventDefault()
     e.stopPropagation()
     copyData.find(item => {
-        if(item.id == id) item.status = true
+        if (item.id == id) item.status = true
     })
     data.find(item => {
-        if(item.id == id) item.status = true
+        if (item.id == id) item.status = true
     })
     const obj = { id, price, model, brand, currency, images, count: 1 };
     const yoxla = basket.find(item => item.id == id)
@@ -25,7 +25,8 @@ function addBasket(id, price, model, brand, currency, images, e) {
     else yoxla.count += 1
     localStorage.setItem('basket', JSON.stringify(basket))
     showBasket()
-    show()
+    if (sort == 'main') show()
+    else showDetails()
 }
 
 showBasket()
@@ -53,12 +54,13 @@ function showBasket() {
     })
 }
 
-function deleteAll() {
+function deleteAll(sort) {
     data.forEach(item => item.status = false)
     localStorage.removeItem('basket')
     basket.length = 0
     likeDiv.innerHTML = ''
-    show()
+    if (sort == 'main') show()
+    else showDetails()
 }
 
 function favDelete(id) {
@@ -67,7 +69,9 @@ function favDelete(id) {
     data.filter(item => { if (id == item.id) item.status = false })
     localStorage.setItem('basket', JSON.stringify(yeniArr))
     showBasket()
-    show()
+    let params = new URLSearchParams(location.search)
+    if (params.get('id')) showDetails()
+    else show()
 }
 
 function changeCount(deyisen, index, id) {

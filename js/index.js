@@ -36,7 +36,7 @@ function show() {
                                 <div class="relative">
                                     <img alt="car" class="object-cover w-full h-52 rounded-[8px_8px_0_0] dark:bg-gray-500"
                                         src="${item.images[0]}" />
-                                        <i onclick="addBasket( ${item.id}, ${item.price}, '${item.model}', '${item.brand}', '${item.currency}', '${item.images[0]}', event)" class="fa-regular fa-heart ${item.status == false ? 'text-white' : 'text-[#ca1016]'} absolute right-2 top-2 text-[22px] cursor-pointer"></i>
+                                        <i onclick="addBasket( ${item.id}, ${item.price}, '${item.model}', '${item.brand}', '${item.currency}', '${item.images[0]}', event, 'main')" class="fa-regular fa-heart ${item.status == false ? 'text-white' : 'text-[#ca1016]'} absolute right-2 top-2 text-[22px] cursor-pointer"></i>
                                 </div>
                                 <div class="flex flex-col flex-1 p-3">
                                     <h3 class="flex-1 pt-2 pb-[2px] text-[18px] font-[700] leading-snug">${item.price} ${item.currency}</h3>
