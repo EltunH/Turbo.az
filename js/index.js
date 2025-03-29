@@ -8,6 +8,8 @@ const btnArtir = document.getElementById('btnArtir')
 const select = document.querySelectorAll('#selects select')
 const valyuta = document.getElementById('valyuta')
 const toRed = document.getElementById('toRed')
+const sideBar = document.getElementById('sideBar')
+const filtersDiv = document.getElementById('filtersDiv')
 
 let markaArr = [...(new Set(data.map(item => item.brand)))]
 let modelArr = [...(new Set(data.map(item => item.model)))]
@@ -129,4 +131,10 @@ function etrafliAxtaris() {
     show()
 }
 
+function side() {
+    sideBar.classList.toggle('toRight')
+}
 
+function filters() {
+    filtersDiv.classList.toggle('toDown')
+}
